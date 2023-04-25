@@ -271,11 +271,7 @@ public class AdventureGame : MonoBehaviour
             State nextState = nextStates[2];
             actualState = doTransition(actualState, nextState); ;
         }
-        else
-        {
-            //Debug.Log("bin am leben");
-        }
-
+        
         if (wait || overrideTextComponent)
         {
             Debug.Log("in wait " + infoOn);
