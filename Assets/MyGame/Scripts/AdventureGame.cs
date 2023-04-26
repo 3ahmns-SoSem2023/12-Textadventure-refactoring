@@ -30,7 +30,7 @@ public class AdventureGame : MonoBehaviour
     private int statesUntilRescue;
     public string notifaction = "Notification: ";
     public string info = "Info";
-
+    public string dO = "Do";
 
     State actualState;
 
@@ -127,7 +127,7 @@ public class AdventureGame : MonoBehaviour
 
         }
 
-        if (nextState.name == "Info.Alarm")
+        if (nextState.name == info + ".Alarm")
         {
             ResetCounters();
             Debug.Log("Counters Reseted + " + passedStatesCount + " " + collectedWoolCount + " " + dehydrationCount);
@@ -141,7 +141,7 @@ public class AdventureGame : MonoBehaviour
 
         if (currentState.name == nextState.name)
         {
-            if (nextState.name == "Knit.Do" || nextState.name == "Fight.Attack" || nextState.name == "Collect.Do")
+            if (nextState.name == "Knit." + dO || nextState.name == "Fight.Attack" || nextState.name == "Collect." + dO)
             {
                 wait = false;
                 overrideText = "reset in do|attack";
@@ -184,7 +184,7 @@ public class AdventureGame : MonoBehaviour
             overrideTextComponent = false;
         }
 
-        if ((currentState.name == "Collect." + info || currentState.name == "Collect.Do") && nextState.name == "Collect.Do")
+        if ((currentState.name == "Collect." + info || currentState.name == "Collect." + dO) && nextState.name == "Collect." + dO)
         {
             int nbrWool = RandomState.getrandom.Next(1, 3);
             collectedWoolCount += nbrWool;
@@ -194,7 +194,7 @@ public class AdventureGame : MonoBehaviour
         }
 
 
-        if ((currentState.name == "Knit." + info || nextState.name == "Knit.Do") && nextState.name == "Knit.Do")
+        if ((currentState.name == "Knit." + info || nextState.name == "Knit." + dO) && nextState.name == "Knit." + dO)
         {
             if (collectedWoolCount >= 2)
             {
@@ -214,12 +214,12 @@ public class AdventureGame : MonoBehaviour
             return nextState;
         }
 
-        if (currentState.name == "Knit.Do" && currentState.name == "Collect." + info)
+        if (currentState.name == "Knit." + dO && currentState.name == "Collect." + info)
         {
             overrideTextComponent = false;
         }
 
-        if (currentState.name == "Fight.Do" && (nextState.name == "Collect." + info || nextState.name == "Fight.Do"))
+        if (currentState.name == "Fight." + dO && (nextState.name == "Collect." + info || nextState.name == "Fight." + dO))
         {
 
             Debug.Log("wool before Fight in kg: " + collectedWoolCount);
