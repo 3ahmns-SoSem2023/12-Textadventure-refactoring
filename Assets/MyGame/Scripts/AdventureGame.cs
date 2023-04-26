@@ -28,6 +28,7 @@ public class AdventureGame : MonoBehaviour
     private bool infoOn;
     private string overrideText;
     private int statesUntilRescue;
+    public string notifaction = "Notification: ";
 
 
     State actualState;
@@ -161,9 +162,9 @@ public class AdventureGame : MonoBehaviour
         if (currentState.name == "Info.Human" && nextState.name == "Info.Done")
         {
             overrideTextComponent = true;
-            overrideText = "Notification: Crime scene investigation revealed that robots destroyed all water inventories and water sponge warehouses. " + "\n \n" +
-                           "Notification: All proper working service robots have to ensure that their godhumans stay alive and do not dry out." + "\n \n" +
-                           "Notification: Collect wool and knit water sponges which are able to make water out of air. ";
+            overrideText = notifaction + "Crime scene investigation revealed that robots destroyed all water inventories and water sponge warehouses. " + "\n \n" +
+                           notifaction + "All proper working service robots have to ensure that their godhumans stay alive and do not dry out." + "\n \n" +
+                           notifaction +  "Collect wool and knit water sponges which are able to make water out of air. ";
 
         }
 
