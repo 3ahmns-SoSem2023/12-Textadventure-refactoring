@@ -29,6 +29,7 @@ public class AdventureGame : MonoBehaviour
     private string overrideText;
     private int statesUntilRescue;
     public string notifaction = "Notification: ";
+    public string info = "Info";
 
 
     State actualState;
@@ -153,13 +154,13 @@ public class AdventureGame : MonoBehaviour
 
         }
 
-        if (nextState.name == "Info.Done" || nextState.name == "Collect.Info")
+        if (nextState.name == info + ".Done" || nextState.name == "Collect." + info)
         {
             SetupInfoUI();
             overrideTextComponent = false;
         }
 
-        if (currentState.name == "Info.Human" && nextState.name == "Info.Done")
+        if (currentState.name == info + ".Human" && nextState.name == info + ".Done")
         {
             overrideTextComponent = true;
             overrideText = notifaction + "Crime scene investigation revealed that robots destroyed all water inventories and water sponge warehouses. " + "\n \n" +
@@ -168,7 +169,7 @@ public class AdventureGame : MonoBehaviour
 
         }
 
-        if (currentState.name == "Info.Accident" && nextState.name == "Info.Done")
+        if (currentState.name == info + ".Accident" && nextState.name == info + ".Done")
         {
             overrideTextComponent = true;
             overrideText = "Magda is a 21 year old woman. She loves salty food and is doing a lot of sports." + "\n" +
@@ -178,12 +179,12 @@ public class AdventureGame : MonoBehaviour
 
         }
 
-        if (currentState.name == "Info.Done" && nextState.name == "Collect")
+        if (currentState.name == info + ".Done" && nextState.name == "Collect")
         {
             overrideTextComponent = false;
         }
 
-        if ((currentState.name == "Collect.Info" || currentState.name == "Collect.Do") && nextState.name == "Collect.Do")
+        if ((currentState.name == "Collect." + info || currentState.name == "Collect.Do") && nextState.name == "Collect.Do")
         {
             int nbrWool = RandomState.getrandom.Next(1, 3);
             collectedWoolCount += nbrWool;
@@ -193,7 +194,7 @@ public class AdventureGame : MonoBehaviour
         }
 
 
-        if ((currentState.name == "Knit.Info" || nextState.name == "Knit.Do") && nextState.name == "Knit.Do")
+        if ((currentState.name == "Knit." + info || nextState.name == "Knit.Do") && nextState.name == "Knit.Do")
         {
             if (collectedWoolCount >= 2)
             {
@@ -213,12 +214,12 @@ public class AdventureGame : MonoBehaviour
             return nextState;
         }
 
-        if (currentState.name == "Knit.Do" && currentState.name == "Collect.Info")
+        if (currentState.name == "Knit.Do" && currentState.name == "Collect." + info)
         {
             overrideTextComponent = false;
         }
 
-        if (currentState.name == "Fight.Do" && (nextState.name == "Collect.Info" || nextState.name == "Fight.Do"))
+        if (currentState.name == "Fight.Do" && (nextState.name == "Collect." + info || nextState.name == "Fight.Do"))
         {
 
             Debug.Log("wool before Fight in kg: " + collectedWoolCount);
