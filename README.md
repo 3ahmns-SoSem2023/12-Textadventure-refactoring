@@ -1,4 +1,4 @@
-# 99-Textadventure-refactoring
+# 12-Textadventure-refactoring
 This is a school project a textadventure game to learn refactoring. 
 
 + **What is the game theme?**  Si Fi scenario with robots. 
