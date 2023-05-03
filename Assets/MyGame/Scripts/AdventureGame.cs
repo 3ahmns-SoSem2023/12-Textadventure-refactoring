@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class AdventureGame : MonoBehaviour
 {
+    private const string STATEINFOALARM = "Info.Alarm";
 
     //private static readonly System.Random getrandom = new System.Random(123);
 
@@ -29,8 +30,7 @@ public class AdventureGame : MonoBehaviour
     private string overrideText;
     private int statesUntilRescue;
     public string notifaction = "Notification: ";
-    public string info = "Info";
-    public string dO = "Do";
+    
 
     State actualState;
 
@@ -127,7 +127,7 @@ public class AdventureGame : MonoBehaviour
 
         }
 
-        if (nextState.name == info + ".Alarm")
+        if (nextState.name == STATEINFOALARM)
         {
             ResetCounters();
             Debug.Log("Counters Reseted + " + passedStatesCount + " " + collectedWoolCount + " " + dehydrationCount);
@@ -141,7 +141,7 @@ public class AdventureGame : MonoBehaviour
 
         if (currentState.name == nextState.name)
         {
-            if (nextState.name == "Knit." + dO || nextState.name == "Fight.Attack" || nextState.name == "Collect." + dO)
+            if (nextState.name == "Knit.Do" || nextState.name == "Fight.Attack" || nextState.name == "Collect.Do")
             {
                 wait = false;
                 overrideText = "reset in do|attack";
@@ -154,13 +154,13 @@ public class AdventureGame : MonoBehaviour
 
         }
 
-        if (nextState.name == info + ".Done" || nextState.name == "Collect." + info)
+        if (nextState.name == "Info.Done" || nextState.name == "Collect.Info")
         {
             SetupInfoUI();
             overrideTextComponent = false;
         }
 
-        if (currentState.name == info + ".Human" && nextState.name == info + ".Done")
+        if (currentState.name == "Info.Human" && nextState.name == "Info.Done")
         {
             overrideTextComponent = true;
             overrideText = notifaction + "Crime scene investigation revealed that robots destroyed all water inventories and water sponge warehouses. " + "\n \n" +
@@ -169,7 +169,7 @@ public class AdventureGame : MonoBehaviour
 
         }
 
-        if (currentState.name == info + ".Accident" && nextState.name == info + ".Done")
+        if (currentState.name == "Info.Accident" && nextState.name == "Info.Done")
         {
             overrideTextComponent = true;
             overrideText = "Magda is a 21 year old woman. She loves salty food and is doing a lot of sports." + "\n" +
@@ -179,12 +179,12 @@ public class AdventureGame : MonoBehaviour
 
         }
 
-        if (currentState.name == info + ".Done" && nextState.name == "Collect")
+        if (currentState.name == "Info.Done" && nextState.name == "Collect")
         {
             overrideTextComponent = false;
         }
 
-        if ((currentState.name == "Collect." + info || currentState.name == "Collect." + dO) && nextState.name == "Collect." + dO)
+        if ((currentState.name == "Collect.Info" || currentState.name == "Collect.Do") && nextState.name == "Collect.Do")
         {
             int nbrWool = RandomState.getrandom.Next(1, 3);
             collectedWoolCount += nbrWool;
@@ -194,7 +194,7 @@ public class AdventureGame : MonoBehaviour
         }
 
 
-        if ((currentState.name == "Knit." + info || nextState.name == "Knit." + dO) && nextState.name == "Knit." + dO)
+        if ((currentState.name == "Knit.Info" || nextState.name == "Knit.Do") && nextState.name == "Knit.Do")
         {
             if (collectedWoolCount >= 2)
             {
@@ -214,12 +214,12 @@ public class AdventureGame : MonoBehaviour
             return nextState;
         }
 
-        if (currentState.name == "Knit." + dO && currentState.name == "Collect." + info)
+        if (currentState.name == "Knit.Do" && currentState.name == "Collect.Info")
         {
             overrideTextComponent = false;
         }
 
-        if (currentState.name == "Fight." + dO && (nextState.name == "Collect." + info || nextState.name == "Fight." + dO))
+        if (currentState.name == "Fight.Do" && (nextState.name == "Collect.Info" || nextState.name == "Fight.Do"))
         {
 
             Debug.Log("wool before Fight in kg: " + collectedWoolCount);
