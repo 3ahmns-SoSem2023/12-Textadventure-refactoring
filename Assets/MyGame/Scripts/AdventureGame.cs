@@ -9,6 +9,7 @@ public class AdventureGame : MonoBehaviour
     private const string STATEKNITDO = "Knit.Do";
     private const string STATEFIGHTATTACK = "Fight.Attack";
     private const string STATECOLLECTDO = "Collect.Do";
+    private const string STATEINFODONE = "Info.Done";
 
     //private static readonly System.Random getrandom = new System.Random(123);
 
@@ -157,7 +158,7 @@ public class AdventureGame : MonoBehaviour
 
         }
 
-        if (nextState.name == "Info.Done" || nextState.name == "Collect.Info")
+        if (nextState.name == STATEINFODONE || nextState.name == "Collect.Info")
         {
             SetupInfoUI();
             overrideTextComponent = false;
