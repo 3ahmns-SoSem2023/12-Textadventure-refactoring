@@ -10,6 +10,7 @@ public class AdventureGame : MonoBehaviour
     private const string STATEFIGHTATTACK = "Fight.Attack";
     private const string STATECOLLECTDO = "Collect.Do";
     private const string STATEINFODONE = "Info.Done";
+    private const string STATECOLLECTINFO = "Collect.Info";
 
     //private static readonly System.Random getrandom = new System.Random(123);
 
@@ -158,7 +159,7 @@ public class AdventureGame : MonoBehaviour
 
         }
 
-        if (nextState.name == STATEINFODONE || nextState.name == "Collect.Info")
+        if (nextState.name == STATEINFODONE || nextState.name == STATECOLLECTINFO)
         {
             SetupInfoUI();
             overrideTextComponent = false;
